@@ -2,7 +2,7 @@ from aiogram import types
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from config import bot, dp
 import logging
-from  aiogram.utils import executor
+from aiogram.utils import executor
 import random
 
 
