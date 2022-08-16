@@ -69,5 +69,5 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start, commands=['start'])
     dp.register_message_handler(meme, commands=['mem'])
     dp.register_message_handler(quiz1, commands=['quiz'])
-    dp.register_message_handler(pin, commands=['pin'], commands_prefix='!')
+    dp.register_message_handler(pin, commands=['pin'], commands_prefix='!/')
     dp.register_message_handler(dice, commands=['dice'])
