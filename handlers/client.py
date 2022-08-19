@@ -32,10 +32,10 @@ async def dice(message: types.Message):
         await message.reply('пиши только в группе бигбрейн')
 
 
-# async def meme(message: types.message):
-#     image = ['']
-#     photo = open(random.choice(image), 'rb')
-#     await bot.send_photo(message.chat.id, photo=photo)
+async def meme(message: types.message):
+    image = ['']
+    photo = open(random.choice(image), 'rb')
+    await bot.send_photo(message.chat.id, photo=photo)
 
 
 async def quiz1(message: types.Message):
