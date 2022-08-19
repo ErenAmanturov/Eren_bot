@@ -1,7 +1,9 @@
 from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
+from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from config import bot, ADMIN
+from keyboards.client_kb import cancel_markup
 
 
 class FSMAdmin(StatesGroup):
@@ -15,7 +17,7 @@ async def fsm_menu_start(message: types.Message):
     if message.from_user.id in ADMIN:
         await FSMAdmin.photo_of_the_dish.set()
         await message.answer(f"Здравствуй, менеджер {message.from_user.full_name} "
-                             f"Как выглядит ваше блюдо?")
+                             f"Как выглядит ваше блюдо?", reply_markup=cancel_markup)
     else:
         await message.reply("Пишите в личку!")
 
@@ -63,7 +65,18 @@ async def load_price(message: types.Message, state: FSMContext):
         await bot.send_message(message.from_user.id, 'Любые символы кроме цифр запрещены. Пожалуйста вводите цифры')
 
 
+async def cancel_registration(message: types.Message, state: FSMContext):
+    current_state = await state.get_state()
+    if current_state is None:
+        return
+    else:
+        await state.finish()
+        await message.answer(f'Вы отменили добавление нового блюда, менеджер {message.from_user.first_name}')
+
+
 def register_handlers_fsmadminmenu(dp: Dispatcher):
+    dp.register_message_handler(cancel_registration, state='*', commands='cancel')
+    dp.register_message_handler(cancel_registration, Text(equals='cancel', ignore_case=True), state='*')
     dp.register_message_handler(fsm_menu_start, commands=['menu'])
     dp.register_message_handler(load_photo, state=FSMAdmin.photo_of_the_dish,
                                 content_types=['photo'])
