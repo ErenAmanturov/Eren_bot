@@ -19,7 +19,7 @@ async def fsm_menu_start(message: types.Message):
         await message.answer(f"Здравствуй, менеджер {message.from_user.full_name} "
                              f"Как выглядит ваше блюдо?", reply_markup=cancel_markup)
     else:
-        await message.reply("Пишите в личку!")
+        await message.reply("Ты не менеджер")
 
 
 async def load_photo(message: types.Message, state: FSMContext):
@@ -83,4 +83,3 @@ def register_handlers_fsmadminmenu(dp: Dispatcher):
     dp.register_message_handler(load_title, state=FSMAdmin.title_of_the_dish)
     dp.register_message_handler(load_description, state=FSMAdmin.description_of_the_dish)
     dp.register_message_handler(load_price, state=FSMAdmin.price_of_the_dish)
-
