@@ -3,7 +3,7 @@ from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 import random
 from config import bot
 import time
-from parser.mouse import parser
+from perser.mouse import parser
 
 
 async def start(message: types.Message):
