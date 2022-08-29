@@ -1,8 +1,9 @@
-from aiogram import types
+from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from config import bot, Dispatcher
 import random
+from config import bot
 import time
+from parser.mouse import parser
 
 
 async def start(message: types.Message):
@@ -65,8 +66,21 @@ async def quiz1(message: types.Message):
     )
 
 
+async def parser_mouses(message: types.Message):
+    data = parser()
+    for item in data:
+        await bot.send_message(
+            message.from_user.id,
+            f"{item['link']}\n\n"
+            f"{item['name']}\n"
+            f"{item['price']}\n"
+            f"{item['na sklade']}"
+        )
+
+
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start, commands=['start'])
+    dp.register_message_handler(parser_mouses, commands=['mouse'])
     dp.register_message_handler(meme, commands=['mem'])
     dp.register_message_handler(quiz1, commands=['quiz'])
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!/')
