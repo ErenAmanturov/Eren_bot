@@ -16,14 +16,15 @@ def get_html(url, params=''):
 
 def get_data(html):
     soup = BeautifulSoup(html, "html.parser")
-    items = soup.find_all('div', class_="pull-right rel")
+    items = soup.find_all('div', class_="item product_listbox oh")
     mouse = []
     for item in items:
         mouse.append({
-            'name': item.find('div', class_='listbox_title oh').find("a").getText(),
-            'link': item.find('div', class_='listbox_title oh').find('a').get('href'),
-            'price': item.find('div', class_='listbox_price text-center').find('strong').getText(),
-            'na sklade': item.find('div', class_='listbox_motive text-center').find('span').getText()
+            'name': item.find('div', class_='pull-right rel').find('div', class_='listbox_title oh').find("a").getText(),
+            'link_photo': f"https://www.kivano.kg{item.find('div', class_='listbox_img pull-left').find('a').find('img').get('src')}",
+            'link': f"https://www.kivano.kg{item.find('div', class_='pull-right rel').find('div', class_='listbox_title oh').find('a').get('href')}",
+            'price': item.find('div', class_='pull-right rel').find('div', class_='listbox_price text-center').find('strong').getText(),
+            'na sklade': item.find('div', class_='pull-right rel').find('div', class_='listbox_motive text-center').find('span').getText()
         })
     return mouse
 
@@ -33,7 +34,7 @@ def parser():
     if html.status_code == 200:
         answer = []
         for page in range(1, 2):
-            html = get_html(f"{URL}page/{page}/")
+            html = get_html(f"{URL}?page=/{page}/")
             answer.extend(get_data(html.text))
         return answer
     else:
