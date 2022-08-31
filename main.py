@@ -16,7 +16,7 @@ callback.register_handlers_callback(dp)
 fsmAdminMenu.register_handlers_fsmadminmenu(dp)
 notification.register_hendler_notification(dp)
 extra.register_handlers_extra(dp)
-inline.inline_google_handler(dp)
+inline.register_handler_inline(dp)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
