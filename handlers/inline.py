@@ -44,5 +44,5 @@ async def inline_google_handler(query: types.InlineQuery):
 
 
 def register_handler_inline(dp: Dispatcher):
-    # dp.register_inline_handler(inline_youtube_handler)
-    dp.register_inline_handler(inline_google_handler)
+    dp.register_inline_handler(inline_youtube_handler)
+    # dp.register_inline_handler(inline_google_handler)

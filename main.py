@@ -13,10 +13,10 @@ async def on_startup(_):
 
 client.register_handlers_client(dp)
 callback.register_handlers_callback(dp)
-inline.inline_google_handler(dp)
 fsmAdminMenu.register_handlers_fsmadminmenu(dp)
 notification.register_hendler_notification(dp)
 extra.register_handlers_extra(dp)
+inline.inline_google_handler(dp)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
