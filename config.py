@@ -8,3 +8,4 @@ TOKEN = config('TOKEN')
 bot = Bot(TOKEN)
 dp = Dispatcher(bot=bot, storage=storage)
 ADMIN = [1211611257, 884247616]
+URL = 'https://botnambavan.herokuapp.com/'

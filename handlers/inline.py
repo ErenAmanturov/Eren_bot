@@ -50,7 +50,7 @@ async def inline_wiki_handler(query: types.InlineQuery):
     articles = [
         types.InlineQueryResultArticle(
             id=result_id,
-            title="Wikiperdia: ",
+            title="Wikipedia: ",
             url=link,
             input_message_content=types.InputMessageContent(
                 message_text=link
