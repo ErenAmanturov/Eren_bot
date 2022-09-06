@@ -97,6 +97,6 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(parser_mouses, commands=['mouse'])
     dp.register_message_handler(parser_movies, commands=['movies'])
     dp.register_message_handler(meme, commands=['mem'])
-    dp.register_message_handler(quiz4, commands=['quiz'])
+    dp.register_message_handler(quiz2, commands=['quiz'])
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!/')
     dp.register_message_handler(dice, commands=['dice'])
