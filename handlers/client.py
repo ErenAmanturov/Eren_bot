@@ -8,7 +8,7 @@ from perser.movies import perser
 
 
 async def start(message: types.Message):
-    await bot.send_message(message.chat.id, 'commands: /mem, /quiz, /dice (if u admin game), !pin with reply message')
+    await bot.send_message(message.chat.id, 'commands: /quiz, /dice (if u admin game), !pin with reply message')
 
 
 async def pin(message: types.Message):
@@ -40,7 +40,7 @@ async def meme(message: types.message):
     await bot.send_photo(message.chat.id, photo=photo)
 
 
-async def quiz1(message: types.Message):
+async def quiz2(message: types.Message):
 
     markup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton("NEXT", callback_data='button_call_1')
@@ -97,6 +97,6 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(parser_mouses, commands=['mouse'])
     dp.register_message_handler(parser_movies, commands=['movies'])
     dp.register_message_handler(meme, commands=['mem'])
-    dp.register_message_handler(quiz1, commands=['quiz'])
+    dp.register_message_handler(quiz4, commands=['quiz'])
     dp.register_message_handler(pin, commands=['pin'], commands_prefix='!/')
     dp.register_message_handler(dice, commands=['dice'])

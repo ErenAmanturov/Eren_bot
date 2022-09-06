@@ -4,7 +4,7 @@ import logging
 from handlers import client, callback, extra, fsmAdminMenu, notification, inline
 from database import bot_db
 from aiogram.utils import executor
-# from decouple import config
+from decouple import config
 
 
 async def on_startup(_):
@@ -26,13 +26,13 @@ inline.register_handler_inline(dp)
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
-    # executor.start_webhook(
-    #     dispatcher=dp,
-    #     webhook_path="",
-    #     on_startup=on_startup,
-    #     on_shutdown=on_shutdown,
-    #     skip_updates=True,
-    #     host='0.0.0.0',
-    #     port=config("PORT", cast=int)
-    # )
+    # executor.start_polling(dp, skip_updates=True, on_startup=on_startup)
+    executor.start_webhook(
+        dispatcher=dp,
+        webhook_path="",
+        on_startup=on_startup,
+        on_shutdown=on_shutdown,
+        skip_updates=True,
+        host='0.0.0.0',
+        port=config("PORT", cast=int)
+    )
