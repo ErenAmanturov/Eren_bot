@@ -19,7 +19,7 @@ async def dice(message: types.Message):
     if message.chat.type != "private":
         await bot.send_message(message.chat.id, 'For bot:')
         bot_choice = await bot.send_dice(message.chat.id, emoji='🎲')
-        await bot.send_message(message.chat.id, 'For player:')
+        await bot.send_message(message.chat.id, f'For {message.from_user.first_name}:')
         player_choice = await bot.send_dice(message.chat.id, emoji='🎲')
         time.sleep(5)
         print(bot_choice.dice.value)
@@ -29,13 +29,13 @@ async def dice(message: types.Message):
         elif bot_choice.dice.value == player_choice.dice.value:
             await bot.send_message(message.chat.id, 'МЫ выиграли')
         else:
-            await bot.send_message(message.chat.id, 'Игрок выиграл. Ему повезло')
+            await bot.send_message(message.chat.id, f'{message.from_user.first_name} выиграл. Ему повезло')
     else:
         await message.reply('пиши только в группе бигбрейн')
 
 
 async def meme(message: types.message):
-    image = ['']
+    image = ['media/bot1.jpg', 'media/bot2.jfif', 'media/meme.png']
     photo = open(random.choice(image), 'rb')
     await bot.send_photo(message.chat.id, photo=photo)
 
